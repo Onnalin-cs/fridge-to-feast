@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fridge-to-Feast 🍳 - ระบบคิดสูตรอาหารจากวัตถุดิบจริง</title>
+  <title>Fridge-to-Feast 🍳 - ระบบแนะนำเมนูอาหารจากวัตถุดิบจริง</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -43,13 +43,13 @@
 
     <header class="text-center mb-8 space-y-2">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold">
-        ✨ ระบบคำนวณและรังสรรค์เมนูจากวัตถุดิบจริง
+        ✨ แนะนำเมนูอาหารจานโปรดจากวัตถุดิบในตู้เย็น
       </div>
       <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
-        เปลี่ยนวัตถุดิบในตู้เย็น ให้กลายเป็น <span class="text-amber-600">เมนูอร่อย</span>
+        เปลี่ยนวัตถุดิบในตู้เย็น ให้กลายเป็น <span class="text-amber-600">เมนูระดับเชฟ</span>
       </h2>
       <p class="text-slate-600 text-sm md:text-base max-w-lg mx-auto">
-        ระบุวัตถุดิบที่คุณมี ระบบจะนำวัตถุดิบเหล่านั้นมาคำนวณเป็นสูตรอาหารให้อัตโนมัติ!
+        เลือกวัตถุดิบที่คุณมี ระบบจะช่วยเลือกเมนูอาหารไทยอร่อยๆ ที่เหมาะกับวัตถุดิบนั้นให้อัตโนมัติ!
       </p>
     </header>
 
@@ -63,7 +63,7 @@
         </label>
         
         <div class="flex gap-2 mb-3">
-          <input type="text" id="ingredientInput" placeholder="พิมพ์วัตถุดิบ เช่น กุ้ง, หมูสับ, ผักกาดขาว" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium">
+          <input type="text" id="ingredientInput" placeholder="พิมพ์วัตถุดิบ เช่น กุ้ง, หมูสับ, ปลากระป๋อง" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium">
           <button onclick="addIngredientTag()" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-5 py-3 rounded-xl text-sm transition shadow-md shadow-amber-200 shrink-0">
             + เพิ่ม
           </button>
@@ -71,10 +71,10 @@
 
         <div class="flex flex-wrap gap-1.5 mb-3">
           <span class="text-xs text-slate-400 self-center mr-1">คลิกเพิ่มด่วน:</span>
-          <button onclick="quickAddTag('ไข่ไก่')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-2.5 py-1 rounded-lg border border-slate-200 transition">+ ไข่ไก่</button>
-          <button onclick="quickAddTag('หมูสับ')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-2.5 py-1 rounded-lg border border-slate-200 transition">+ หมูสับ</button>
           <button onclick="quickAddTag('กุ้ง')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-2.5 py-1 rounded-lg border border-slate-200 transition">+ กุ้ง</button>
           <button onclick="quickAddTag('ปลากระป๋อง')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-2.5 py-1 rounded-lg border border-slate-200 transition">+ ปลากระป๋อง</button>
+          <button onclick="quickAddTag('ไข่ไก่')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-2.5 py-1 rounded-lg border border-slate-200 transition">+ ไข่ไก่</button>
+          <button onclick="quickAddTag('หมูสับ')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-2.5 py-1 rounded-lg border border-slate-200 transition">+ หมูสับ</button>
           <button onclick="quickAddTag('ผักกาดขาว')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-2.5 py-1 rounded-lg border border-slate-200 transition">+ ผักกาดขาว</button>
         </div>
 
@@ -88,10 +88,10 @@
             ประเภทอาหารที่ต้องการ:
           </label>
           <select id="mealType" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium">
+            <option value="ทั้งหมด / เชฟแนะนำ">⭐ ทั้งหมด / เชฟแนะนำ</option>
             <option value="เมนูผัด / ทอด รสเด็ด">🍳 เมนูผัด / ทอด รสเด็ด</option>
-            <option value="เมนูต้ม / แกง ร้อนๆ">🍲 เมนูต้ม / แกง ร้อนๆ</option>
+            <option value="เมนูต้ม / ยำ ร้อนๆ">🍲 เมนูต้ม / ยำ ร้อนๆ</option>
             <option value="อาหารจานเดียว ทำง่ายๆ">⏱️ อาหารจานเดียว ทำง่ายๆ</option>
-            <option value="อาหารคลีน / แคลอรีต่ำ">🥗 อาหารคลีน / แคลอรีต่ำ</option>
           </select>
         </div>
 
@@ -117,7 +117,7 @@
 
     <div id="loadingState" class="hidden text-center py-12 space-y-3">
       <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-amber-500 border-t-transparent"></div>
-      <p class="text-slate-600 font-semibold text-sm">กำลังคำนวณสูตรอาหารจากวัตถุดิบที่คุณเลือก...</p>
+      <p class="text-slate-600 font-semibold text-sm">กำลังสุ่มเลือกสูตรอาหารอร่อยๆ จากวัตถุดิบของคุณ...</p>
     </div>
 
     <!-- Result Display Card -->
@@ -157,14 +157,14 @@
               </div>
             </div>
             <div id="keyNotice" class="text-xs font-semibold text-emerald-700 bg-emerald-100 px-3 py-1.5 rounded-xl">
-              ✅ คำนวณตรงตามวัตถุดิบ
+              ✅ เมนูอาหารไทยมาตรฐาน
             </div>
           </div>
 
           <div>
             <h4 class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
               <i data-lucide="list-checks" class="w-4 h-4 text-amber-600"></i>
-              วัตถุดิบและส่วนผสมที่ใช้:
+              วัตถุดิบและส่วนผสมที่ต้องเตรียม:
             </h4>
             <ul id="resIngredients" class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-slate-700 bg-amber-50/40 p-4 rounded-2xl border border-amber-100"></ul>
           </div>
@@ -172,7 +172,7 @@
           <div>
             <h4 class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
               <i data-lucide="chef-hat" class="w-4 h-4 text-amber-600"></i>
-              ขั้นตอนการทำ:
+              ขั้นตอนการทำอย่างละเอียด:
             </h4>
             <ol id="resSteps" class="space-y-2.5 text-sm text-slate-700 bg-slate-50 p-4 rounded-2xl border border-slate-100"></ol>
           </div>
@@ -180,7 +180,7 @@
           <div class="bg-amber-50/80 p-4 rounded-2xl border border-amber-200/80 flex items-start gap-3">
             <i data-lucide="lightbulb" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
             <div>
-              <p class="text-xs font-bold text-amber-900">เคล็ดลับความอร่อย:</p>
+              <p class="text-xs font-bold text-amber-900">เคล็ดลับจากเชฟ:</p>
               <p id="resTip" class="text-xs text-amber-800 mt-1 leading-relaxed"></p>
             </div>
           </div>
@@ -213,8 +213,98 @@
   </div>
 
   <script>
-    let ingredientList = ['กุ้ง', 'ผักกาดขาว', 'ไข่ไก่'];
+    let ingredientList = ['กุ้ง', 'ปลากระป๋อง', 'ไข่ไก่'];
     let currentRecipeData = null;
+
+    // คลังเมนูอาหารไทยมาตรฐาน แยกตามวัตถุดิบหลัก (หลากหลาย น่ากิน จริงจัง)
+    const authenticRecipesDB = {
+      'ปลากระป๋อง': [
+        {
+          title: "ยำปลากระป๋องทรงเครื่อง",
+          category: "เมนูต้ม / ยำ ร้อนๆ",
+          calories: "280 kcal",
+          image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80",
+          ingredients: ["ปลากระป๋อง 1 กรอง", "หอมแดงซอย 3 หัว", "พริกขี้หนูสวนซอย 5 เม็ด", "ตะไคร้ซอย 1 ต้น", "น้ำปลา 1 ช้อนชา", "น้ำมะนาว 1 ช้อนโต๊ะ", "ใบกะเพรา/ผักชีฝรั่ง"],
+          steps: [
+            "เทปลากระป๋องใส่ชามผสม ค่อยๆ แกะเนื้อปลาให้พอดีคำ ไม่ให้เละ",
+            "ใส่ตะไคร้ซอย หอมแดง พริกขี้หนูสวนลงไป",
+            "ปรุงรสด้วยน้ำมะนาวและน้ำปลา คลุกเคล้าเบาๆ แล้วโรยใบกะเพราพร้อมเสิร์ฟ"
+          ],
+          tip: "บีบน้ำมะนาวสดตอนท้ายจะช่วยดับกลิ่นคาวและเพิ่มความหอมสดชื่น"
+        },
+        {
+          title: "ต้มยำปลากระป๋องน้ำข้น",
+          category: "เมนูต้ม / ยำ ร้อนๆ",
+          calories: "320 kcal",
+          image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&auto=format&fit=crop&q=80",
+          ingredients: ["ปลากระป๋อง 1 กระป๋อง", "ข่า ตะไคร้ ใบมะกรูด", "เห็ดฟาง/เห็ดนางฟ้า", "นมข้นจืด 2 ช้อนโต๊ะ", "พริกเผา 1 ช้อนชา", "น้ำมะนาวและน้ำปลา"],
+          steps: [
+            "ต้มน้ำให้เดือด ใส่ข่า ตะไคร้ ใบมะกรูด และเห็ดลงไปต้มจนหอม",
+            "ใส่ปลากระป๋องลงไป ละลายพริกเผาและใส่นมข้นจืดลงไป",
+            "ปิดไฟแล้วปรุงรสด้วยน้ำมะนาวและน้ำปลา โรยผักชีพร้อมเสิร์ฟ"
+          ],
+          tip: "ต้องปิดไฟก่อนปรุงมะนาว เพื่อไมให้น้ำซุปมีรสขม"
+        }
+      ],
+      'กุ้ง': [
+        {
+          title: "กุ้งคั่วพริกเกลือ",
+          category: "เมนูผัด / ทอด รสเด็ด",
+          calories: "350 kcal",
+          image: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&auto=format&fit=crop&q=80",
+          ingredients: ["กุ้งสดแกะเปลือก 200 กรัม", "กระเทียมสับละเอียด 2 ช้อนโต๊ะ", "พริกจินดาสับ 1 ช้อนโต๊ะ", "ต้นหอมซอย", "เกลือป่น 1/2 ช้อนชา", "น้ำตาลทรายเล็กน้อย"],
+          steps: [
+            "นำกุ้งลงไปจวนในกระทะใส่น้ำมันเล็กน้อยพอสุก แล้วตักขึ้นพักไว้",
+            "ใส่กระเทียมและพริกสับลงไปคั่วในกระทะจนหอมและกรอบ",
+            "ใส่กุ้งกลับลงไป ปรุงรสด้วยเกลือ น้ำตาล และโรยต้นหอมซอย คั่วด้วยไฟแรงพร้อมเสิร์ฟ"
+          ],
+          tip: "อย่าผัดกุ้งนานเกินไป เนื้อกุ้งจะแข็งกระด้างและไม่หวาน"
+        },
+        {
+          title: "กุ้งผัดผักกาดขาวซอสน้ำมันหอย",
+          category: "อาหารจานเดียว ทำง่ายๆ",
+          calories: "290 kcal",
+          image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&auto=format&fit=crop&q=80",
+          ingredients: ["กุ้งสด 150 กรัม", "ผักกาดขาวหั่นชิ้น 200 กรัม", "กระเทียมสับ 1 ช้อนชา", "ซอสหอยนางรม 1 ช้อนโต๊ะ", "ซีอิ๊วขาว 1 ช้อนชา"],
+          steps: [
+            "เจียวกระเทียมสับในกระทะจนหอม ใส่น้ำกุ้งลงไปผัดพอเริ่มเปลี่ยนเป็นสีส้ม",
+            "ใส่ผักกาดขาวลงไป ปรุงรสด้วยซอสหอยนางรมและซีอิ๊วขาว",
+            "เร่งไฟแรง ผัดอย่างรวดเร็วให้ผักพอสลด ตักใส่จาน"
+          ],
+          tip: "ใช้น้ำมันนิดเดียวและเร่งไฟแรง ผักกาดขาวจะกรอบหวานอร่อย"
+        }
+      ],
+      'ไข่ไก่': [
+        {
+          title: "ไข่เจียวทรงเครื่องใบกะเพรา",
+          category: "เมนูผัด / ทอด รสเด็ด",
+          calories: "310 kcal",
+          image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&auto=format&fit=crop&q=80",
+          ingredients: ["ไข่ไก่ 2 ฟอง", "ใบกะเพรา 1 กำมือ", "พริกขี้หนูสับ 3 เม็ด", "น้ำปลา 1 ช้อนชา", "ซอสหอยนางรม 1/2 ช้อนชา"],
+          steps: [
+            "ตอกไข่ใส่ชาม ปรุงรสด้วยน้ำปลา ซอสหอยนางรม ใส่พริกสับและใบกะเพรา ตีให้เข้ากัน",
+            "ตั้งกระทะใส่น้ำมัน รอน้ำมันร้อนจัด",
+            "เทไข่ลงไปทอดจนฟูกรอบทั้งสองด้าน ตักขึ้นพักสะเด็ดน้ำมัน"
+          ],
+          tip: "ใส่น้ำมะนาว 2-3 หยดตอนตีไข่ จะช่วยให้ไข่เจียวฟูนุ่มยิ่งขึ้น"
+        }
+      ],
+      'หมูสับ': [
+        {
+          title: "ต้มจืดผักกาดขาวหมูสับยัดไส้",
+          category: "เมนูต้ม / ยำ ร้อนๆ",
+          calories: "260 kcal",
+          image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&auto=format&fit=crop&q=80",
+          ingredients: ["หมูสับ 150 กรัม", "ผักกาดขาว 150 กรัม", "ซุปก้อน 1 ก้อน", "กระเทียม พริกไทยป่น", "ซีอิ๊วขาว 1 ช้อนโต๊ะ"],
+          steps: [
+            "หมักหมูสับด้วยกระเทียม พริกไทยป่น และซีอิ๊วขาว ปั้นเป็นก้อนพอดีคำ",
+            "ตั้งน้ำให้เดือด ใส่ซุปก้อน พอน้ำเดือดให้ใส่หมูสับปั้นก้อนลงไป",
+            "เบาไฟ ใส่ผักกาดขาวลงไปต้มจนผักนุ่ม ตักใส่ชามโรยพริกไทย"
+          ],
+          tip: "คอยช้อนฟองออกขณะต้ม จะทำให้น้ำซุปใส น่ารับประทาน"
+        }
+      ]
+    };
 
     window.onload = function() {
       lucide.createIcons();
@@ -291,14 +381,13 @@
       // AI Call Mode
       if (apiKey) {
         try {
-          const prompt = `คุณคือเชฟมืออาชีพ จงสร้างสูตรอาหารโดยใช้วัตถุดิบหลักคือ: "${ingredientList.join(', ')}" เท่านั้น
-ประเภทอาหาร: "${mealType}"
+          const prompt = `คุณคือเชฟมืออาชีพ จงเลือกเมนูอาหารไทยที่มีอยู่จริง 1 เมนู โดยใช้วัตถุดิบหลักจากรายการนี้: "${ingredientList.join(', ')}" (เลือกใช้วัตถุดิบที่เข้ากัน ไม่นำวัตถุดิบทั้งหมดมารวมกันมั่วๆ)
 ตอบกลับเป็น JSON Object เท่านั้น รูปแบบ:
 {
-  "title": "ชื่อเมนูภาษาไทยที่ตรงกับวัตถุดิบที่ให้มา",
-  "category": "${mealType}",
-  "calories": "380 kcal",
-  "ingredients": ["วัตถุดิบ 1", "วัตถุดิบ 2"],
+  "title": "ชื่อเมนูอาหารไทยมาตรฐานที่มีอยู่จริง",
+  "category": "หมวดหมู่อาหาร",
+  "calories": "xxx kcal",
+  "ingredients": ["วัตถุดิบ 1 พร้อมปริมาณ", "วัตถุดิบ 2"],
   "steps": ["ขั้นตอนทำที่ 1", "ขั้นตอนทำที่ 2"],
   "tip": "เคล็ดลับความอร่อย"
 }`;
@@ -314,6 +403,7 @@
           raw = raw.replace(/```json/g, '').replace(/```/g, '').trim();
           const parsed = JSON.parse(raw);
 
+          parsed.image = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80";
           renderResult(parsed, true);
           finishLoading();
           return;
@@ -322,22 +412,28 @@
         }
       }
 
-      // Dynamic Fallback Mode (สร้างเมนูตรงกับแท็กที่เลือกทันทีโดยไม่ต้องพึ่ง API)
+      // Smart Fallback Selection (สุ่มเลือกเมนูอร่อยแท้ๆ จากวัตถุดิบในแท็ก)
       setTimeout(() => {
-        const mainIng = ingredientList.join(' และ ');
-        const dynamicRecipe = {
-          title: `ผัดทรงเครื่อง${mainIng}`,
-          category: mealType,
-          calories: "380 kcal",
-          ingredients: ingredientList.map(i => `${i} (ตามสัดส่วนที่เตรียมไว้)`).concat(["กระเทียมสับ 1 ช้อนโต๊ะ", "ซอสหอยนางรม 1 ช้อนโต๊ะ", "ซีอิ๊วขาวและน้ำตาลปิ๊บ"]),
-          steps: [
-            `ตั้งกระทะใส่น้ำมันให้ร้อน เจียวกระเทียมสับจนหอม`,
-            `นำ ${ingredientList[0] || 'วัตถุดิบ'} ลงไปผัดจนเริ่มสุก`,
-            `ใส่ ${ingredientList.slice(1).join(', ') || 'ส่วนผสมที่เหลือ'} ลงไปผัดรวมกัน ปรุงรสด้วยซอสหอยนางรมและซีอิ๊วขาว ผัดด้วยไฟแรงพร้อมเสิร์ฟ`
-          ],
-          tip: "ผัดด้วยไฟแรงอย่างรวดเร็วจะช่วยให้อาหารมีความหอมกลิ่นกระทะยิ่งขึ้น"
-        };
-        renderResult(dynamicRecipe, false);
+        let availableRecipes = [];
+        
+        // ค้นหาว่าในแท็กมีวัตถุดิบอะไรตรงกับคลังเมนูบ้าง
+        for (let tag of ingredientList) {
+          for (let key in authenticRecipesDB) {
+            if (tag.includes(key) || key.includes(tag)) {
+              availableRecipes.push(...authenticRecipesDB[key]);
+            }
+          }
+        }
+
+        // ถ้าไม่พบวัตถุดิบตรงในคลัง ให้ใช้เมนูยำปลากระป๋องหรือกุ้งผัดพริกเกลือเป็นค่าเริ่มต้น
+        if (availableRecipes.length === 0) {
+          availableRecipes = authenticRecipesDB['กุ้ง'];
+        }
+
+        // สุ่มเมนู 1 รายการเพื่อความหลากหลาย
+        const selectedRecipe = availableRecipes[Math.floor(Math.random() * availableRecipes.length)];
+        
+        renderResult(selectedRecipe, false);
         finishLoading();
       }, 800);
     }
@@ -347,8 +443,9 @@
       document.getElementById('resTitle').innerText = data.title;
       document.getElementById('resCategory').innerText = data.category;
       document.getElementById('resCalories').innerText = data.calories || "380 kcal";
+      document.getElementById('resImage').src = data.image || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80";
 
-      document.getElementById('keyNotice').innerText = isAI ? "✨ AI คำนวณตามวัตถุดิบจริง" : "✅ คำนวณตรงตามวัตถุดิบที่คุณเลือก";
+      document.getElementById('keyNotice').innerText = isAI ? "✨ AI แนะนำเมนูตามวัตถุดิบจริง" : "✅ เมนูแนะนำจากวัตถุดิบของคุณ";
 
       document.getElementById('resIngredients').innerHTML = data.ingredients.map(i => `
         <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0"></span>${i}</li>
@@ -366,7 +463,7 @@
     function speakRecipe() {
       if (!currentRecipeData) return;
       window.speechSynthesis.cancel();
-      const textToSpeak = `เมนูแนะนำคือ ${currentRecipeData.title} วิธีทำคือ ${currentRecipeData.steps.join(' จากนั้น ')}`;
+      const textToSpeak = `เมนูแนะนำวันนี้คือ ${currentRecipeData.title} วิธีทำคือ ${currentRecipeData.steps.join(' จากนั้น ')}`;
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.lang = 'th-TH';
       utterance.rate = 0.95;
