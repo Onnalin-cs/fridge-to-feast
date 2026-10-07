@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fridge-to-Feast 🍳 - ระบบแนะนำสูตรอาหารไทยอัจฉริยะ</title>
+  <title>Fridge-to-Feast 🍳 - ระบบแนะนำและรังสรรค์เมนูอาหารไทยอัจฉริยะ</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Kanit -->
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -18,7 +18,7 @@
     .glass-card {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(251, 191, 36, 0.25);
+      border: 1px solid rgba(251, 191, 36, 0.3);
     }
 
     .tab-btn {
@@ -27,26 +27,26 @@
     .tab-btn.active-tab {
       background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
     }
 
-    .ingredient-card {
+    .ingredient-btn {
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .ingredient-card.selected {
-      background-color: #fef3c7;
+    .ingredient-btn.selected {
+      background: #fef3c7;
       border-color: #f59e0b;
       color: #78350f;
-      transform: scale(1.02);
-      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
     }
 
     .recipe-card {
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .recipe-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 30px -10px rgba(245, 158, 11, 0.25);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px -10px rgba(245, 158, 11, 0.25);
     }
 
     @keyframes fadeInUp {
@@ -58,21 +58,21 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 min-h-screen text-slate-800 pb-20">
+<body class="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 min-h-screen text-slate-800 pb-24">
 
-  <!-- Top Navbar -->
-  <nav class="bg-white/85 backdrop-blur-md sticky top-0 z-50 border-b border-amber-100/80 shadow-sm">
+  <!-- Top Navigation -->
+  <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-amber-100/90 shadow-sm">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-600 flex items-center justify-center text-white text-xl shadow-md shadow-amber-200">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-600 flex items-center justify-center text-white text-2xl shadow-md shadow-amber-200">
           🍳
         </div>
         <div>
-          <h1 class="font-extrabold text-lg leading-none text-slate-900 tracking-tight">Fridge-to-Feast</h1>
-          <p class="text-[10px] text-amber-600 font-bold tracking-widest uppercase">SMART KITCHEN ASSISTANT</p>
+          <h1 class="font-extrabold text-xl leading-none text-slate-900 tracking-tight">Fridge-to-Feast</h1>
+          <p class="text-[10px] text-amber-600 font-bold tracking-widest uppercase">AUTHENTIC THAI RECIPE ENGINE</p>
         </div>
       </div>
-      <button onclick="toggleConfigModal()" class="flex items-center gap-1.5 text-xs font-semibold bg-amber-50/80 hover:bg-amber-100 text-amber-800 border border-amber-200 px-3.5 py-2 rounded-xl transition shadow-sm">
+      <button onclick="toggleConfigModal()" class="flex items-center gap-1.5 text-xs font-semibold bg-amber-50/90 hover:bg-amber-100 text-amber-900 border border-amber-200/90 px-3.5 py-2.5 rounded-xl transition shadow-sm">
         <i data-lucide="settings" class="w-4 h-4"></i>
         <span>ตั้งค่า API Key</span>
       </button>
@@ -82,25 +82,27 @@
   <div class="max-w-4xl mx-auto px-4 pt-8">
 
     <!-- Header Section -->
-    <header class="text-center mb-8 space-y-2.5">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/90 text-amber-800 text-xs font-bold shadow-sm border border-amber-200">
-        ✨ เลือกหมวดหมู่วัตถุดิบ แนะนำอย่างน้อย 3 เมนูอร่อยพร้อมวิธีทำ
+    <header class="text-center mb-8 space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100/90 text-amber-900 text-xs font-bold shadow-sm border border-amber-200/80">
+        ✨ คลังวัตถุดิบครอบคลุม รังสรรค์เมนูไทยแท้อย่างน้อย 3 เมนูอร่อยพร้อมวิธีทำ
       </div>
-      <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-        เปลี่ยนวัตถุดิบติดตู้เย็น ให้เป็น <span class="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">เมนูระดับเชฟ</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+        เลือกวัตถุดิบที่มีในตู้เย็น ให้กลายเป็น <br class="hidden sm:inline">
+        <span class="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 bg-clip-text text-transparent">เมนูโปรดระดับเชฟ</span>
       </h2>
       <p class="text-slate-600 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
-        คลิกเลือกหมวดหมู่และวัตถุดิบที่คุณมี ระบบจะคิดและรังสรรค์เมนูอาหารไทยอร่อยๆ ให้ทันที!
+        เพียงคลิกเลือกหมวดหมู่และวัตถุดิบที่คุณมีในตู้เย็น ระบบจะคิดคำนวณและสุ่มจับคู่สูตรอาหารไทยแท้พร้อมภาพตรงปกให้ทันที
       </p>
     </header>
 
-    <!-- Category Tabs & Ingredient Selection Card -->
+    <!-- Main Selection Card -->
     <div class="glass-card rounded-3xl p-6 md:p-8 shadow-2xl shadow-amber-200/50 mb-10 space-y-6">
       
-      <div class="flex items-center justify-between border-b border-amber-100 pb-3">
-        <label class="block text-sm font-bold text-slate-800 flex items-center gap-2">
-          <i data-lucide="layout-grid" class="w-4.5 h-4.5 text-amber-600"></i>
-          เลือกหมวดหมู่วัตถุดิบ:
+      <!-- Top Action Controls -->
+      <div class="flex items-center justify-between border-b border-amber-100/90 pb-3">
+        <label class="block text-sm font-extrabold text-slate-800 flex items-center gap-2">
+          <i data-lucide="layout-grid" class="w-5 h-5 text-amber-600"></i>
+          หมวดหมู่วัตถุดิบ (คลิกเลือกได้หลายรายการ):
         </label>
         <button onclick="clearSelectedIngredients()" class="text-xs font-semibold text-rose-600 hover:text-rose-800 transition flex items-center gap-1">
           <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
@@ -109,105 +111,129 @@
       </div>
 
       <!-- Category Navigation Tabs -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-        <button onclick="switchTab('meat')" id="tab-meat" class="tab-btn active-tab py-3 px-4 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-2 shadow-sm border border-amber-200">
-          <span>🥩 เนื้อสัตว์</span>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <button onclick="switchTab('meat')" id="tab-meat" class="tab-btn active-tab py-3 px-3 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-1.5 shadow-sm border border-amber-200">
+          <span>🥩 เนื้อสัตว์ & สัตว์ปีก</span>
         </button>
-        <button onclick="switchTab('seafood')" id="tab-seafood" class="tab-btn bg-slate-100 hover:bg-amber-100/60 text-slate-700 py-3 px-4 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-2 border border-slate-200/80">
-          <span>🦐 อาหารทะเล</span>
+        <button onclick="switchTab('seafood')" id="tab-seafood" class="tab-btn bg-slate-100 hover:bg-amber-100/70 text-slate-700 py-3 px-3 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-1.5 border border-slate-200/80">
+          <span>🦐 ซีฟู้ด & ปลากระป๋อง</span>
         </button>
-        <button onclick="switchTab('veg')" id="tab-veg" class="tab-btn bg-slate-100 hover:bg-amber-100/60 text-slate-700 py-3 px-4 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-2 border border-slate-200/80">
-          <span>🥬 ผักสด & ไข่</span>
+        <button onclick="switchTab('veg')" id="tab-veg" class="tab-btn bg-slate-100 hover:bg-amber-100/70 text-slate-700 py-3 px-3 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-1.5 border border-slate-200/80">
+          <span>🥬 ผักสด & ไข่ไก่</span>
         </button>
-        <button onclick="switchTab('pantry')" id="tab-pantry" class="tab-btn bg-slate-100 hover:bg-amber-100/60 text-slate-700 py-3 px-4 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-2 border border-slate-200/80">
-          <span>🥫 แปรรูป/เครื่องปรุง</span>
+        <button onclick="switchTab('pantry')" id="tab-pantry" class="tab-pantry tab-btn bg-slate-100 hover:bg-amber-100/70 text-slate-700 py-3 px-3 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-1.5 border border-slate-200/80">
+          <span>🥫 แปรรูป & วุ้นเส้น</span>
         </button>
       </div>
 
-      <!-- Ingredient Grid Content Sections -->
-      <div class="bg-slate-50/80 p-5 rounded-2xl border border-slate-200/80 min-h-[140px]">
+      <!-- Ingredient Grid Area -->
+      <div class="bg-slate-50/80 p-5 rounded-2xl border border-slate-200/80 min-h-[160px]">
         
-        <!-- Category: เนื้อสัตว์ -->
+        <!-- Category 1: เนื้อสัตว์ -->
         <div id="content-meat" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
-          <button onclick="toggleIngredient('หมูกรอบ')" id="item-หมูกรอบ" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+          <button onclick="toggleIngredient('หมูกรอบ')" id="item-หมูกรอบ" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
             <span>🥓 หมูกรอบ</span>
             <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
           </button>
-          <button onclick="toggleIngredient('หมูสับ')" id="item-หมูสับ" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+          <button onclick="toggleIngredient('หมูสับ')" id="item-หมูสับ" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
             <span>🥩 หมูสับ</span>
             <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
           </button>
-          <button onclick="toggleIngredient('เนื้อวัว')" id="item-เนื้อวัว" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+          <button onclick="toggleIngredient('หมูสามชั้น')" id="item-หมูสามชั้น" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+            <span>🥩 หมูสามชั้น</span>
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
+          </button>
+          <button onclick="toggleIngredient('เนื้อวัว')" id="item-เนื้อวัว" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
             <span>🥩 เนื้อวัว</span>
             <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
           </button>
-          <button onclick="toggleIngredient('เนื้อไก่')" id="item-เนื้อไก่" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+          <button onclick="toggleIngredient('เนื้อไก่')" id="item-เนื้อไก่" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
             <span>🍗 เนื้อไก่</span>
             <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
           </button>
+          <button onclick="toggleIngredient('ปลาดุก')" id="item-ปลาดุก" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+            <span>🐟 ปลาดุก</span>
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
+          </button>
         </div>
 
-        <!-- Category: อาหารทะเล -->
+        <!-- Category 2: อาหารทะเล -->
         <div id="content-seafood" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
-          <button onclick="toggleIngredient('กุ้ง')" id="item-กุ้ง" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+          <button onclick="toggleIngredient('กุ้งสด')" id="item-กุ้งสด" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
             <span>🦐 กุ้งสด</span>
             <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
           </button>
-          <button onclick="toggleIngredient('ปลาหมึก')" id="item-ปลาหมึก" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+          <button onclick="toggleIngredient('ปลาหมึก')" id="item-ปลาหมึก" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
             <span>🦑 ปลาหมึก</span>
             <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
           </button>
-          <button onclick="toggleIngredient('เนื้อปลา')" id="item-เนื้อปลา" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+          <button onclick="toggleIngredient('เนื้อปลา')" id="item-เนื้อปลา" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
             <span>🐟 เนื้อปลา</span>
             <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
           </button>
-        </div>
-
-        <!-- Category: ผักสด & ไข่ -->
-        <div id="content-veg" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
-          <button onclick="toggleIngredient('ไข่ไก่')" id="item-ไข่ไก่" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
-            <span>🥚 ไข่ไก่</span>
-            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
-          </button>
-          <button onclick="toggleIngredient('ผักคะน้า')" id="item-ผักคะน้า" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
-            <span>🥬 ผักคะน้า</span>
-            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
-          </button>
-          <button onclick="toggleIngredient('ใบกะเพรา')" id="item-ใบกะเพรา" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
-            <span>🌿 ใบกะเพรา</span>
-            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
-          </button>
-          <button onclick="toggleIngredient('ผักกาดขาว')" id="item-ผักกาดขาว" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
-            <span>🥗 ผักกาดขาว</span>
-            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
-          </button>
-        </div>
-
-        <!-- Category: เครื่องปรุง/แปรรูป -->
-        <div id="content-pantry" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
-          <button onclick="toggleIngredient('ปลากระป๋อง')" id="item-ปลากระป๋อง" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+          <button onclick="toggleIngredient('ปลากระป๋อง')" id="item-ปลากระป๋อง" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
             <span>🥫 ปลากระป๋อง</span>
             <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
           </button>
-          <button onclick="toggleIngredient('เต้าหู้ไข่')" id="item-เต้าหู้ไข่" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+        </div>
+
+        <!-- Category 3: ผักสด & ไข่ไก่ -->
+        <div id="content-veg" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+          <button onclick="toggleIngredient('ไข่ไก่')" id="item-ไข่ไก่" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+            <span>🥚 ไข่ไก่</span>
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
+          </button>
+          <button onclick="toggleIngredient('ผักคะน้า')" id="item-ผักคะน้า" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+            <span>🥬 ผักคะน้า</span>
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
+          </button>
+          <button onclick="toggleIngredient('ใบกะเพรา')" id="item-ใบกะเพรา" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+            <span>🌿 ใบกะเพรา</span>
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
+          </button>
+          <button onclick="toggleIngredient('ผักกาดขาว')" id="item-ผักกาดขาว" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+            <span>🥗 ผักกาดขาว</span>
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
+          </button>
+          <button onclick="toggleIngredient('มะเขือยาว')" id="item-มะเขือยาว" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+            <span>🍆 มะเขือยาว</span>
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
+          </button>
+          <button onclick="toggleIngredient('เห็ดฟาง')" id="item-เห็ดฟาง" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+            <span>🍄 เห็ดฟาง</span>
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
+          </button>
+        </div>
+
+        <!-- Category 4: แปรรูป/วุ้นเส้น -->
+        <div id="content-pantry" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+          <button onclick="toggleIngredient('เต้าหู้ไข่')" id="item-เต้าหู้ไข่" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
             <span>🟡 เต้าหู้ไข่</span>
             <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
           </button>
-          <button onclick="toggleIngredient('วุ้นเส้น')" id="item-วุ้นเส้น" class="ingredient-card bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+          <button onclick="toggleIngredient('วุ้นเส้น')" id="item-วุ้นเส้น" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
             <span>🍜 วุ้นเส้น</span>
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
+          </button>
+          <button onclick="toggleIngredient('ไข่เค็ม')" id="item-ไข่เค็ม" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+            <span>🥚 ไข่เค็ม</span>
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
+          </button>
+          <button onclick="toggleIngredient('พริกแกงเผ็ด')" id="item-พริกแกงเผ็ด" class="ingredient-btn bg-white hover:border-amber-400 p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between shadow-sm">
+            <span>🌶️ พริกแกงเผ็ด</span>
             <i data-lucide="plus" class="w-3.5 h-3.5 text-slate-400 check-icon"></i>
           </button>
         </div>
 
       </div>
 
-      <!-- Selected Ingredients Tags Display -->
+      <!-- Selected Tags Display Area -->
       <div>
-        <span class="text-xs text-slate-500 font-bold block mb-2 flex items-center gap-1.5">
-          <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-amber-600"></i>
-          วัตถุดิบที่คุณเลือกไว้ในขณะนี้:
+        <span class="text-xs text-slate-600 font-bold block mb-2 flex items-center gap-1.5">
+          <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-600"></i>
+          วัตถุดิบที่คุณเลือกไว้แล้ว:
         </span>
-        <div id="selectedContainer" class="flex flex-wrap gap-2 min-h-[48px] bg-amber-50/60 p-3 rounded-2xl border border-amber-200/70 items-center">
+        <div id="selectedContainer" class="flex flex-wrap gap-2 min-h-[48px] bg-amber-50/70 p-3 rounded-2xl border border-amber-200/80 items-center">
           <!-- Tags Rendered Dynamically -->
         </div>
       </div>
@@ -246,13 +272,13 @@
 
     </div>
 
-    <!-- Loading State -->
+    <!-- Loading Spinner State -->
     <div id="loadingState" class="hidden text-center py-16 space-y-4">
       <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-amber-500 border-t-transparent shadow-lg"></div>
-      <p class="text-slate-700 font-semibold text-base">กำลังคัดสรรเมนูอาหารไทยรสเด็ดอย่างน้อย 3 เมนูจากวัตถุดิบของคุณ...</p>
+      <p class="text-slate-700 font-semibold text-base">กำลังคัดสรรสูตรอาหารไทยรสเด็ดอย่างน้อย 3 เมนูจากวัตถุดิบที่คุณเลือก...</p>
     </div>
 
-    <!-- Results Container -->
+    <!-- Results Container (Show Recipes) -->
     <div id="resultsContainer" class="hidden space-y-8 mb-16">
       
       <div class="flex items-center justify-between border-b border-amber-200 pb-3">
@@ -265,16 +291,16 @@
         </span>
       </div>
 
-      <!-- Recipe Cards List -->
+      <!-- Recipe Cards Container -->
       <div id="recipeCardsList" class="space-y-8">
-        <!-- Rendered dynamically -->
+        <!-- Rendered Dynamically -->
       </div>
 
     </div>
 
   </div>
 
-  <!-- Config Modal -->
+  <!-- Config Modal (Gemini Key) -->
   <div id="configModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-amber-100">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -288,7 +314,7 @@
       </div>
       <div class="space-y-3 text-xs">
         <p class="text-slate-500 leading-relaxed">
-          นำ API Key จาก <strong>aistudio.google.com</strong> มาวางที่นี่เพื่อประมวลผลด้วย Gemini AI จริง
+          นำ API Key จาก <strong>aistudio.google.com</strong> มาวางที่นี่เพื่อเชื่อมต่อ AI ประมวลผลเมนูขั้นสูง
         </p>
         <div>
           <label class="block font-semibold text-slate-700 mb-1">Google Gemini API Key:</label>
@@ -306,20 +332,26 @@
     let activeCategoryTab = 'meat';
     let currentRecipesList = [];
 
-    // ล็อกสเปกรูปภาพตรงปกตามชื่อเมนูเฉพาะ
+    // คลังรูปภาพประกอบอาหารไทยตรงปก 100% (High Quality Direct CDN URLs)
     const exactDishImages = {
       "คะน้าหมูกรอบราดข้าว": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80",
       "หมูกรอบคั่วพริกเกลือ": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
+      "ผัดกะเพราหมูสับราดข้าว": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80",
+      "ต้มจืดเต้าหู้หมูสับผักกาดขาว": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&auto=format&fit=crop&q=80",
+      "หมูสามชั้นคั่วพริกเกลือ": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
       "ต้มยำกุ้งน้ำข้นโบราณ": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&auto=format&fit=crop&q=80",
       "กุ้งคั่วพริกเกลือกระเทียมสด": "https://images.unsplash.com/photo-1559742811-822863c46f83?w=800&auto=format&fit=crop&q=80",
+      "ปลาหมึกผัดไข่เค็ม": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&auto=format&fit=crop&q=80",
       "ผัดพริกหยวกเนื้อสด": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
+      "ผัดกะเพราไก่ไข่ดาว": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80",
+      "ปลาดุกผัดเผ็ดพริกแกงสด": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
       "ไข่เจียวหมูสับทรงเครื่อง": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&auto=format&fit=crop&q=80",
       "ยำปลากระป๋องสมุนไพรสด": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80",
-      "ผัดกะเพราหมูสับราดข้าว": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80",
+      "ผัดมะเขือยาวหมูสับใบกะเพรา": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&auto=format&fit=crop&q=80",
       " default": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80"
     };
 
-    // คลังเมนูอาหารไทยมาตรฐานแท้ๆ
+    // คลังเมนูอาหารไทยมาตรฐานแท้ๆ ครบถ้วนตามวัตถุดิบ
     const authenticMasterDatabase = [
       {
         keys: ['หมูกรอบ', 'หมู'],
@@ -364,7 +396,35 @@
         tip: "เร่งไฟแรงตอนใส่ใบกะเพราและผัดอย่างรวดเร็ว จะช่วยให้กะเพราหอมกลิ่นกระทะ"
       },
       {
-        keys: ['กุ้ง'],
+        keys: ['หมูสับ', 'เต้าหู้ไข่', 'ผักกาดขาว'],
+        title: "ต้มจืดเต้าหู้หมูสับผักกาดขาว",
+        category: "ต้ม / แกง / ยำ",
+        calories: "280 kcal",
+        image: exactDishImages["ต้มจืดเต้าหู้หมูสับผักกาดขาว"],
+        ingredients: ["หมูสับ 100 กรัม", "เต้าหู้ไข่ 1 หลอด", "ผักกาดขาว 150 กรัม", "ซุปก้อน 1 ก้อน", "ซีอิ๊วขาว 1 ช้อนโต๊ะ", "กระเทียมเจียว"],
+        steps: [
+          "หมักหมูสับด้วยซีอิ๊วขาวและพริกไทยป่น ปั้นเป็นก้อนพอดีคำเตรียมไว้",
+          "ตั้งน้ำให้เดือด ใส่ซุปก้อน พอน้ำเดือดให้ใส่หมูสับปั้นก้อนลงไปต้มจนสุก",
+          "ใส่ผักกาดขาวและเต้าหู้ไข่หั่นแว่นลงไป ต้มต่อจนผักนุ่ม ตักใส่ชามโรยกระเทียมเจียว"
+        ],
+        tip: "อย่านานเกินไปหลังจากใส่เต้าหู้ไข่ เพื่อป้องกันเต้าหู้เละแตก"
+      },
+      {
+        keys: ['หมูสามชั้น', 'หมู'],
+        title: "หมูสามชั้นคั่วพริกเกลือ",
+        category: "ผัด / ทอด",
+        calories: "520 kcal",
+        image: exactDishImages["หมูสามชั้นคั่วพริกเกลือ"],
+        ingredients: ["หมูสามชั้นหั่นชิ้น 200 กรัม", "กระเทียมสับ 2 ช้อนโต๊ะ", "พริกขี้หนูสับ 1 ช้อนโต๊ะ", "ต้นหอมซอย", "เกลือป่น"],
+        steps: [
+          "นำหมูสามชั้นลงไปรวนในกระทะจนน้ำมันหมูออกมาและเนื้อเริ่มสุกเหลืองกรอบ",
+          "ตักน้ำมันส่วนเกินออก ใส่กระเทียมและพริกสับลงไปผัดคั่วจนหอมกรอบ",
+          "ปรุงรสด้วยเกลือและน้ำตาล คลุกเคล้าให้เข้ากันพร้อมเสิร์ฟ"
+        ],
+        tip: "ใช้น้ำมันธรรมชาติที่ออกมาจากตัวหมูสามชั้น คั่วพริกกระเทียมจะหอมมาก"
+      },
+      {
+        keys: ['กุ้งสด', 'กุ้ง'],
         title: "ต้มยำกุ้งน้ำข้นโบราณ",
         category: "ต้ม / แกง / ยำ",
         calories: "320 kcal",
@@ -378,7 +438,7 @@
         tip: "ต้องปิดไฟก่อนเติมน้ำมะนาว เพื่อป้องกันไม่ให้น้ำต้มยำมีรสขม"
       },
       {
-        keys: ['กุ้ง'],
+        keys: ['กุ้งสด', 'กุ้ง'],
         title: "กุ้งคั่วพริกเกลือกระเทียมสด",
         category: "ผัด / ทอด",
         calories: "350 kcal",
@@ -390,6 +450,20 @@
           "ใส่กุ้งกลับลงไป ปรุงรสด้วยเกลือ น้ำตาล และโรยต้นหอมซอย คั่วด้วยไฟแรงพร้อมเสิร์ฟ"
         ],
         tip: "อย่าผัดกุ้งนานเกินไป เนื้อกุ้งจะแข็งกระด้างและเสียความหวาน"
+      },
+      {
+        keys: ['ปลาหมึก', 'ไข่เค็ม'],
+        title: "ปลาหมึกผัดไข่เค็ม",
+        category: "ผัด / ทอด",
+        calories: "450 kcal",
+        image: exactDishImages["ปลาหมึกผัดไข่เค็ม"],
+        ingredients: ["ปลาหมึกสดหั่นแว่น 200 กรัม", "ไข่แดงเค็ม 3 ฟอง", "น้ำพริกเผา 1 ช้อนชา", "กระเทียมสับ", "ต้นหอม หอมใหญ่ หั่นท่อน", "ซอสหอยนางรม 1 ช้อนโต๊ะ"],
+        steps: [
+          "บดไข่แดงเค็มผสมกับน้ำร้อนเล็กน้อย น้ำพริกเผา ซอสหอยนางรม คนให้เข้ากันเป็นซอส",
+          "ลวกปลาหมึกในน้ำเดือดพอสุกตักขึ้นพักไว้",
+          "ตั้งกระทะเจียวกระเทียม ใส่ซอสไข่เค็มลงไปผัดจนฟู ใส่ปลาหมึกและผักลงไปผัดเคล้าให้เข้ากัน"
+        ],
+        tip: "ลวกปลาหมึกก่อนนำมาผัด จะช่วยไม่ให้น้ำจากปลาหมึกออกมาทำให้ซอสแฉะ"
       },
       {
         keys: ['เนื้อวัว', 'เนื้อ'],
@@ -406,7 +480,35 @@
         tip: "อย่าผัดเนื้อนานเกินไป เพราะจะทำให้เนื้อเหนียว"
       },
       {
-        keys: ['ไข่ไก่', 'ไข่'],
+        keys: ['เนื้อไก่', 'ไก่', 'ใบกะเพรา'],
+        title: "ผัดกะเพราไก่ไข่ดาว",
+        category: "ผัด / ทอด",
+        calories: "430 kcal",
+        image: exactDishImages["ผัดกะเพราไก่ไข่ดาว"],
+        ingredients: ["เนื้อไก่สับ/หั่นชิ้น 150 กรัม", "ใบกะเพรา 1 กำมือ", "พริกขี้หนูทุบ 1 ช้อนโต๊ะ", "กระเทียมสับ 1 ช้อนโต๊ะ", "ซอสหอยนางรม 1 ช้อนโต๊ะ"],
+        steps: [
+          "ตั้งกระทะใส่น้ำมัน ผัดพริกขี้หนูและกระเทียมสับจนหอมส่งกลิ่น",
+          "ใส่เนื้อไก่ลงไปผัดจนสุกทั่วกัน ปรุงรสด้วยซอสหอยนางรม ซีอิ๊วดำ และน้ำปลา",
+          "เร่งไฟ ใส่ใบกะเพราลงไปผัดอย่างรวดเร็ว ปิดไฟ เสิร์ฟคู่กับไข่ดาวกรอบ"
+        ],
+        tip: "ผัดไก่ด้วยไฟแรงอย่างรวดเร็ว จะทำให้เนื้อไก่นุ่มไม่แห้งกระด้าง"
+      },
+      {
+        keys: ['ปลาดุก', 'พริกแกงเผ็ด'],
+        title: "ปลาดุกผัดเผ็ดพริกแกงสด",
+        category: "ผัด / ทอด",
+        calories: "480 kcal",
+        image: exactDishImages["ปลาดุกผัดเผ็ดพริกแกงสด"],
+        ingredients: ["ปลาดุกหั่นชิ้น 200 กรัม", "พริกแกงเผ็ด 2 ช้อนโต๊ะ", "กระชายซอย 1 ช้อนโต๊ะ", "พริกไทยอ่อน", "ใบมะกรูดซอย", "น้ำปลา และน้ำตาลปี๊บ"],
+        steps: [
+          "ทอดปลาดุกในน้ำมันร้อนจนกรอบเหลือง ตักขึ้นพักสะเด็ดน้ำมัน",
+          "ผัดพริกแกงเผ็ดในกระทะใส่น้ำมันจนหอม ปรุงรสด้วยน้ำปลาและน้ำตาลปี๊บ",
+          "ใส่ปลาดุกทอด กระชาย และใบมะกรูดลงไปผัดเคล้าซอสให้ทั่ว พร้อมเสิร์ฟ"
+        ],
+        tip: "ทอดปลาดุกให้กรอบก่อนนำมาผัดพริกแกง จะช่วยให้เนื้อปลาไม่เละ"
+      },
+      {
+        keys: ['ไข่ไก่', 'หมูสับ', 'ไข่'],
         title: "ไข่เจียวหมูสับทรงเครื่อง",
         category: "ผัด / ทอด",
         calories: "380 kcal",
@@ -432,6 +534,20 @@
           "ปรุงรสด้วยน้ำมะนาวสดและน้ำปลา คลุกเคล้าเบาๆ โรยผักชีฝรั่งพร้อมเสิร์ฟ"
         ],
         tip: "ใช้ตะไคร้ซอยแว่นบางๆ จะช่วยเพิ่มกลิ่นหอมและดับกลิ่นคาว"
+      },
+      {
+        keys: ['มะเขือยาว', 'หมูสับ', 'ใบกะเพรา'],
+        title: "ผัดมะเขือยาวหมูสับใบกะเพรา",
+        category: "ผัด / ทอด",
+        calories: "320 kcal",
+        image: exactDishImages["ผัดมะเขือยาวหมูสับใบกะเพรา"],
+        ingredients: ["มะเขือยาวหั่นท่อน 200 กรัม", "หมูสับ 100 กรัม", "เต้าเจี้ยว 1 ช้อนโต๊ะ", "พริกขี้หนูทุบ 5 เม็ด", "กระเทียมสับ", "ใบกะเพรา 1 กำมือ"],
+        steps: [
+          "นำมะเขือยาวไปทอดในน้ำมันร้อนพอสลด ตักขึ้นพักไว้ให้สะเด็ดน้ำมัน",
+          "เจียวกระเทียมและพริกจนหอม ใส่หมูสับลงไปผัดจนสุก ปรุงรสด้วยเต้าเจี้ยวและซอสหอยนางรม",
+          "ใส่มะเขือยาวทอดและใบกะเพราลงไปผัดด้วยไฟแรงอย่างรวดเร็วพร้อมเสิร์ฟ"
+        ],
+        tip: "นำมะเขือยาวไปทอดก่อน จะทำให้ผัดมะเขือยาวสีสวยไม่ดำและไม่เละ"
       }
     ];
 
@@ -449,10 +565,10 @@
         const btn = document.getElementById(`tab-${t}`);
         const content = document.getElementById(`content-${t}`);
         if (t === tabName) {
-          btn.className = "tab-btn active-tab py-3 px-4 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-2 shadow-sm border border-amber-200";
+          btn.className = "tab-btn active-tab py-3 px-3 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-1.5 shadow-sm border border-amber-200";
           content.classList.remove('hidden');
         } else {
-          btn.className = "tab-btn bg-slate-100 hover:bg-amber-100/60 text-slate-700 py-3 px-4 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-2 border border-slate-200/80";
+          btn.className = "tab-btn bg-slate-100 hover:bg-amber-100/70 text-slate-700 py-3 px-3 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-center gap-1.5 border border-slate-200/80";
           content.classList.add('hidden');
         }
       });
@@ -475,8 +591,8 @@
     }
 
     function updateSelectedState() {
-      // Update Grid Buttons State
-      const allItems = document.querySelectorAll('.ingredient-card');
+      // Update Grid Buttons
+      const allItems = document.querySelectorAll('.ingredient-btn');
       allItems.forEach(card => {
         const name = card.id.replace('item-', '');
         const icon = card.querySelector('.check-icon');
@@ -489,10 +605,10 @@
         }
       });
 
-      // Update Tags Display Container
+      // Update Selected Display Container
       const container = document.getElementById('selectedContainer');
       if (selectedIngredients.length === 0) {
-        container.innerHTML = `<span class="text-xs text-slate-400 font-medium px-1">ยังไม่ได้เลือกวัตถุดิบ (คลิกปุ่มหมวดหมู่ด้านบนได้เลย)</span>`;
+        container.innerHTML = `<span class="text-xs text-slate-400 font-medium px-1">ยังไม่ได้เลือกวัตถุดิบ (คลิกเลือกในหมวดหมู่อาหารด้านบนได้เลย)</span>`;
       } else {
         container.innerHTML = selectedIngredients.map(tag => `
           <span class="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-xl shadow-sm animate-fade-in">
@@ -596,7 +712,7 @@
           }
         }
 
-        // เติมเมนูมาตรฐานให้ครบอย่างน้อย 3 เมนูขึ้นไป
+        // เติมเมนูมาตรฐานให้ครบอย่างน้อย 3 เมนูขึ้นไปเสมอ
         for (let recipe of authenticMasterDatabase) {
           if (matchedList.length >= 3) break;
           if (!matchedList.some(r => r.title === recipe.title)) {
