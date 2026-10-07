@@ -5,11 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fridge-to-Feast 🍳 - ระบบแนะนำสูตรอาหารอัจฉริยะ</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Kanit -->
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
@@ -151,7 +148,7 @@
           เมนูแนะนำสำหรับคุณ
         </h3>
         <span id="keyNotice" class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-200 px-3 py-1 rounded-full">
-          ✅ อาหารไทยมาตรฐาน รูปภาพตรงปก
+          ✅ อาหารไทยมาตรฐาน รูปตรงปก
         </span>
       </div>
 
@@ -201,25 +198,26 @@
       'ปู', 'หอย', 'เต้าหู้', 'เห็ด', 'มะเขือเทศ', 'หอมใหญ่', 'วัว', 'เป็ด', 'หมูกรอบ', 'แครอท', 'วุ้นเส้น', 'ข้าว'
     ];
 
-    // คลังรูปภาพตรงปกตามประเภทวัตถุดิบหลัก (Exact Unsplash Food Match)
-    const imageDatabase = {
-      'หมูกรอบ': 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&auto=format&fit=crop&q=80',
-      'กุ้ง': 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&auto=format&fit=crop&q=80',
-      'เนื้อ': 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80',
-      'ปลาหมึก': 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&auto=format&fit=crop&q=80',
-      'ปลากระป๋อง': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80',
-      'ไข่': 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&auto=format&fit=crop&q=80',
-      ' default': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80'
+    // รูปภาพอาหารไทยตรงปกแท้แบบล็อกเจาะจงเฉพาะเมนู (High Quality Food Direct CDN)
+    const exactDishImages = {
+      "คะน้าหมูกรอบราดข้าว": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80",
+      "หมูกรอบคั่วพริกเกลือ": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
+      "ต้มยำกุ้งน้ำข้นโบราณ": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&auto=format&fit=crop&q=80",
+      "กุ้งคั่วพริกเกลือกระเทียมสด": "https://images.unsplash.com/photo-1559742811-822863c46f83?w=800&auto=format&fit=crop&q=80",
+      "ผัดพริกหยวกเนื้อสด": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
+      "ไข่เจียวหมูสับทรงเครื่อง": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&auto=format&fit=crop&q=80",
+      "ยำปลากระป๋องสมุนไพรสด": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80",
+      " default": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80"
     };
 
-    // คลังเมนูอาหารไทยมาตรฐานแท้ๆ รูปตรงปก 100%
+    // คลังเมนูอาหารไทยมาตรฐานแท้ๆ
     const authenticMasterDatabase = [
       {
         keys: ['หมูกรอบ', 'หมู'],
         title: "คะน้าหมูกรอบราดข้าว",
         category: "ผัด / ทอด",
         calories: "550 kcal",
-        image: imageDatabase['หมูกรอบ'],
+        image: exactDishImages["คะน้าหมูกรอบราดข้าว"],
         ingredients: ["หมูกรอบหั่นชิ้น 150 กรัม", "ผักคะน้าหั่นท่อน 150 กรัม", "พริกขี้หนูทุบ 5 เม็ด", "กระเทียมสับ 1 ช้อนโต๊ะ", "ซอสหอยนางรม 1 ช้อนโต๊ะ"],
         steps: [
           "ใส่ผักคะน้า หมูกรอบ พริก กระเทียม เต้าเจี้ยว และซอสหอยนางรมเตรียมไว้ในจานเดียวกัน",
@@ -233,7 +231,7 @@
         title: "หมูกรอบคั่วพริกเกลือ",
         category: "ผัด / ทอด",
         calories: "520 kcal",
-        image: imageDatabase['หมูกรอบ'],
+        image: exactDishImages["หมูกรอบคั่วพริกเกลือ"],
         ingredients: ["หมูกรอบหั่นชิ้น 200 กรัม", "กระเทียมสับ 2 ช้อนโต๊ะ", "พริกขี้หนูสับ 1 ช้อนโต๊ะ", "ต้นหอมซอย", "เกลือป่นและน้ำตาลทราย"],
         steps: [
           "นำหมูกรอบลงไปรวนในกระทะจนน้ำมันหมูออกและหนังเริ่มกรอบยิ่งขึ้น",
@@ -247,7 +245,7 @@
         title: "ต้มยำกุ้งน้ำข้นโบราณ",
         category: "ต้ม / แกง / ยำ",
         calories: "320 kcal",
-        image: imageDatabase['กุ้ง'],
+        image: exactDishImages["ต้มยำกุ้งน้ำข้นโบราณ"],
         ingredients: ["กุ้งสด 5 ตัว", "เห็ดฟาง 100 กรัม", "ข่า ตะไคร้ ใบมะกรูด", "น้ำพริกเผา 1 ช้อนโต๊ะ", "นมข้นจืด 3 ช้อนโต๊ะ", "มะนาว น้ำปลา พริกขี้หนู"],
         steps: [
           "ต้มน้ำซุปให้เดือด ใส่ข่า ตะไคร้ ใบมะกรูด และเห็ดฟางลงไปต้มจนหอม",
@@ -261,7 +259,7 @@
         title: "กุ้งคั่วพริกเกลือกระเทียมสด",
         category: "ผัด / ทอด",
         calories: "350 kcal",
-        image: imageDatabase['กุ้ง'],
+        image: exactDishImages["กุ้งคั่วพริกเกลือกระเทียมสด"],
         ingredients: ["กุ้งสดแกะเปลือก 200 กรัม", "กระเทียมสับละเอียด 2 ช้อนโต๊ะ", "พริกจินดาสับ 1 ช้อนโต๊ะ", "ต้นหอมซอย", "เกลือป่น 1/2 ช้อนชา"],
         steps: [
           "นำกุ้งลงไปรวนในกระทะใส่น้ำมันเล็กน้อยพอสุก ตักขึ้นพักไว้",
@@ -275,7 +273,7 @@
         title: "ผัดพริกหยวกเนื้อสด",
         category: "ผัด / ทอด",
         calories: "420 kcal",
-        image: imageDatabase['เนื้อ'],
+        image: exactDishImages["ผัดพริกหยวกเนื้อสด"],
         ingredients: ["เนื้อวัวหั่นชิ้น 200 กรัม", "พริกหยวกหั่นเฉียง 2 เม็ด", "หอมใหญ่หั่นเสี้ยว 1/2 หัว", "กระเทียมสับ 1 ช้อนโต๊ะ", "ซอสหอยนางรม 1 ช้อนโต๊ะ"],
         steps: [
           "หมักเนื้อวัวด้วยซอสหอยนางรมเล็กน้อยประมาณ 10 นาทีให้นุ่ม",
@@ -289,7 +287,7 @@
         title: "ไข่เจียวหมูสับทรงเครื่อง",
         category: "ผัด / ทอด",
         calories: "380 kcal",
-        image: imageDatabase['ไข่'],
+        image: exactDishImages["ไข่เจียวหมูสับทรงเครื่อง"],
         ingredients: ["ไข่ไก่ 2 ฟอง", "หมูสับ 50 กรัม", "ต้นหอมซอย 1 ต้น", "น้ำปลา 1 ช้อนชา", "ซอยหอยนางรม 1/2 ช้อนชา"],
         steps: [
           "ตอกไข่ใส่ชาม ใส่หมูสับ ต้นหอม ปรุงรสด้วยน้ำปลาและซอสหอยนางรม ตีให้เข้ากัน",
@@ -303,7 +301,7 @@
         title: "ยำปลากระป๋องสมุนไพรสด",
         category: "ต้ม / แกง / ยำ",
         calories: "250 kcal",
-        image: imageDatabase['ปลากระป๋อง'],
+        image: exactDishImages["ยำปลากระป๋องสมุนไพรสด"],
         ingredients: ["ปลากระป๋อง 1 กระป๋อง", "หอมแดงซอย 3 หัว", "ตะไคร้ซอย 1 ต้น", "พริกขี้หนูสวนซอย 5 เม็ด", "น้ำมะนาว 1 ช้อนโต๊ะ", "น้ำปลา 1 ช้อนชา"],
         steps: [
           "เทปลากระป๋องใส่ชาม ค่อยๆ แยกเนื้อปลาให้อยู่ในขนาดพอดีคำ",
@@ -380,13 +378,8 @@
       document.getElementById('geminiKey').value = gKey;
     }
 
-    function getMatchingImage(ingredientName) {
-      for (let key in imageDatabase) {
-        if (ingredientName.includes(key)) {
-          return imageDatabase[key];
-        }
-      }
-      return imageDatabase[' default'];
+    function getExactDishImage(title) {
+      return exactDishImages[title] || exactDishImages[" default"];
     }
 
     async function processRecipe() {
@@ -441,7 +434,7 @@
           const parsedArray = JSON.parse(raw);
 
           parsedArray.forEach(item => {
-            item.image = getMatchingImage(ingredientList[0]);
+            item.image = getExactDishImage(item.title);
           });
 
           renderMultipleResults(parsedArray, true);
@@ -452,30 +445,28 @@
         }
       }
 
-      // 2. Authentic Fallback Database Mode (Always Return Exact Matching Dishes)
+      // 2. Authentic Fallback Database Mode (Strict Exact Dish Images)
       setTimeout(() => {
         let matchedList = [];
 
-        // ค้นหาเมนูในคลังที่ตรงกับวัตถุดิบที่ผู้ใช้เลือก
         for (let tag of ingredientList) {
           for (let recipe of authenticMasterDatabase) {
             if (recipe.keys.some(k => tag.includes(k) || k.includes(tag))) {
               if (!matchedList.some(r => r.title === recipe.title)) {
-                recipe.image = getMatchingImage(tag); // Ensure Image Accuracy
+                recipe.image = getExactDishImage(recipe.title); // Exact Image Locking
                 matchedList.push(recipe);
               }
             }
           }
         }
 
-        // หากหาวัตถุดิบตรงในคลังไม่พบ ให้สร้างเมนูกะเพราสดรูปตรงปกขึ้นมา
         if (matchedList.length === 0) {
           const mainIng = ingredientList[0];
           matchedList.push({
             title: `ผัดกะเพรา${mainIng}สด`,
             category: "ผัด / ทอด",
             calories: "420 kcal",
-            image: getMatchingImage(mainIng),
+            image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80",
             ingredients: [`${mainIng} 150 กรัม`, "ใบกะเพรา 1 กำมือ", "พริกขี้หนูสดสับ 1 ช้อนโต๊ะ", "กระเทียมสับ 1 ช้อนโต๊ะ", "ซอสหอยนางรม 1 ช้อนโต๊ะ", "น้ำปลา 1 ช้อนชา"],
             steps: [
               "ตั้งกระทะใส่น้ำมันจนร้อน เจียวกระเทียมและพริกสับจนหอม",
