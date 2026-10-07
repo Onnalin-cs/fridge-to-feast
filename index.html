@@ -3,50 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fridge-to-Feast 🍳 - ระบบแนะนำเมนูอาหารหลากหลาย</title>
+  <title>Fridge-to-Feast 🍳 - ระบบแนะนำสูตรอาหารอัจฉริยะ</title>
   
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Kanit -->
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     body { font-family: 'Kanit', sans-serif; }
     
     .glass-card {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(251, 191, 36, 0.3);
+      border: 1px solid rgba(251, 191, 36, 0.25);
     }
 
     .recipe-card {
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .recipe-card:hover {
-      transform: translateY(-6px) scale(1.01);
-      box-shadow: 0 20px 30px -10px rgba(245, 158, 11, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px -10px rgba(245, 158, 11, 0.2);
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-fade-in {
-      animation: fadeInUp 0.5s ease-out forwards;
+      animation: fadeInUp 0.4s ease-out forwards;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 min-h-screen text-slate-800 pb-20">
+<body class="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 min-h-screen text-slate-800 pb-20">
 
   <!-- Top Navbar -->
-  <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-amber-100/80 shadow-sm">
+  <nav class="bg-white/85 backdrop-blur-md sticky top-0 z-50 border-b border-amber-100/80 shadow-sm">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-2.5">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-600 flex items-center justify-center text-white text-xl shadow-md shadow-amber-200 animate-pulse">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-600 flex items-center justify-center text-white text-xl shadow-md shadow-amber-200">
           🍳
         </div>
         <div>
           <h1 class="font-extrabold text-lg leading-none text-slate-900 tracking-tight">Fridge-to-Feast</h1>
-          <p class="text-[10px] text-amber-600 font-bold tracking-widest uppercase">Multi-Recipe Generator</p>
+          <p class="text-[10px] text-amber-600 font-bold tracking-widest uppercase">SMART KITCHEN ASSISTANT</p>
         </div>
       </div>
       <button onclick="toggleConfigModal()" class="flex items-center gap-1.5 text-xs font-semibold bg-amber-50/80 hover:bg-amber-100 text-amber-800 border border-amber-200 px-3.5 py-2 rounded-xl transition shadow-sm">
@@ -59,29 +62,29 @@
   <div class="max-w-4xl mx-auto px-4 pt-8">
 
     <!-- Header Section -->
-    <header class="text-center mb-8 space-y-3">
+    <header class="text-center mb-8 space-y-2.5">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/90 text-amber-800 text-xs font-bold shadow-sm border border-amber-200">
-        ✨ ค้นพบเมนูอาหารไทยมาตรฐานอย่างน้อย 3 เมนูขึ้นไป
+        ✨ ระบบช่วยคิดสูตรอาหารและคำนวณโภชนาการอัจฉริยะ
       </div>
       <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-        เปลี่ยนวัตถุดิบที่มี ให้เป็น <span class="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">3 เมนูสุดพิเศษ</span>
+        เปลี่ยนวัตถุดิบติดตู้เย็น ให้เป็น <span class="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">เมนูระดับเชฟ</span>
       </h2>
       <p class="text-slate-600 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
-        ระบุวัตถุดิบที่คุณมีในตู้เย็น ระบบจะช่วยคิดและคัดสรรเมนูอาหารไทยแท้ๆ ขึ้นมาให้เลือกทำถึง 3 เมนูขึ้นไป!
+        ระบุวัตถุดิบที่คุณมี ระบบจะช่วยคัดสรรและรังสรรค์เมนูอาหารไทยน่ารับประทาน พร้อมวิธีทำอย่างละเอียด
       </p>
     </header>
 
     <!-- Main Input Form Card -->
-    <div class="glass-card rounded-3xl p-6 md:p-8 shadow-2xl shadow-amber-200/60 mb-10 space-y-6">
+    <div class="glass-card rounded-3xl p-6 md:p-8 shadow-2xl shadow-amber-200/50 mb-10 space-y-6">
       
       <div>
         <label class="block text-sm font-bold text-slate-800 mb-2 flex items-center gap-2">
           <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-600"></i>
-          วัตถุดิบที่คุณมีในตู้เย็น (เลือกหรือพิมพ์ระบุได้เลย):
+          วัตถุดิบที่มีในตู้เย็นของคุณ:
         </label>
         
         <div class="flex gap-2 mb-3">
-          <input type="text" id="ingredientInput" placeholder="พิมพ์วัตถุดิบ เช่น กุ้ง, หมูกรอบ, ไข่ไก่, ผักกาดขาว" class="flex-1 bg-slate-50/90 border border-slate-200 rounded-2xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium transition">
+          <input type="text" id="ingredientInput" placeholder="พิมพ์วัตถุดิบ เช่น กุ้ง, หมูกรอบ, ไข่ไก่, ผักกาดขาว" class="flex-1 bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium transition">
           <button onclick="addIngredientTag()" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold px-6 py-3.5 rounded-2xl text-sm transition shadow-lg shadow-amber-200 shrink-0 flex items-center gap-1">
             <i data-lucide="plus" class="w-4 h-4"></i>
             <span>เพิ่ม</span>
@@ -90,8 +93,8 @@
 
         <div class="flex flex-wrap gap-1.5 mb-3">
           <span class="text-xs text-slate-400 self-center mr-1">วัตถุดิบยอดนิยม:</span>
-          <button onclick="quickAddTag('กุ้ง')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-3 py-1.5 rounded-xl border border-slate-200/80 transition shadow-sm">+ กุ้ง</button>
           <button onclick="quickAddTag('หมูกรอบ')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-3 py-1.5 rounded-xl border border-slate-200/80 transition shadow-sm">+ หมูกรอบ</button>
+          <button onclick="quickAddTag('กุ้ง')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-3 py-1.5 rounded-xl border border-slate-200/80 transition shadow-sm">+ กุ้ง</button>
           <button onclick="quickAddTag('ไข่ไก่')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-3 py-1.5 rounded-xl border border-slate-200/80 transition shadow-sm">+ ไข่ไก่</button>
           <button onclick="quickAddTag('ปลากระป๋อง')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-3 py-1.5 rounded-xl border border-slate-200/80 transition shadow-sm">+ ปลากระป๋อง</button>
           <button onclick="quickAddTag('เนื้อวัว')" class="text-xs bg-white hover:bg-amber-100 text-slate-600 hover:text-amber-800 px-3 py-1.5 rounded-xl border border-slate-200/80 transition shadow-sm">+ เนื้อวัว</button>
@@ -104,19 +107,19 @@
         <div>
           <label class="block text-sm font-bold text-slate-800 mb-2 flex items-center gap-2">
             <i data-lucide="utensils" class="w-4 h-4 text-amber-600"></i>
-            สไตล์เมนูที่ต้องการ:
+            ประเภทอาหารที่ต้องการ:
           </label>
           <select id="mealType" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium">
-            <option value="หลากหลายสไตล์">⭐ รวมทุกสไตล์ / เชฟแนะนำ</option>
-            <option value="ผัด / ทอด">🍳 เน้นเมนูผัด / ทอด รสเด็ด</option>
-            <option value="ต้ม / แกง / ยำ">🍲 เน้นเมนูต้ม / แกง / ยำ ร้อนๆ</option>
+            <option value="ทั้งหมด">⭐ รวมทุกหมวดหมู่ / เชฟแนะนำ</option>
+            <option value="ผัด / ทอด">🍳 เมนูผัด / ทอด รสเด็ด</option>
+            <option value="ต้ม / แกง / ยำ">🍲 เมนูต้ม / แกง / ยำ ร้อนๆ</option>
           </select>
         </div>
 
         <div>
           <label class="block text-sm font-bold text-slate-800 mb-2 flex items-center gap-2">
             <i data-lucide="flame" class="w-4 h-4 text-amber-600"></i>
-            เป้าหมายแคลอรี:
+            โภชนาการที่ต้องการ:
           </label>
           <select id="calorieGoal" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium">
             <option value="สมดุลปกติ (350 - 500 kcal)">⚖️ สมดุลปกติ (350 - 500 kcal)</option>
@@ -128,7 +131,7 @@
 
       <button onclick="processRecipe()" id="submitBtn" class="w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-600 hover:to-orange-600 active:scale-[0.99] text-white font-bold py-4 rounded-2xl shadow-xl shadow-amber-200/80 transition flex items-center justify-center gap-2 text-base">
         <i data-lucide="sparkles" class="w-5 h-5"></i>
-        <span>คิด 3 เมนูอร่อยพร้อมกัน!</span>
+        <span>คิดสูตรและรังสรรค์เมนูอร่อย!</span>
       </button>
 
     </div>
@@ -136,23 +139,23 @@
     <!-- Loading State -->
     <div id="loadingState" class="hidden text-center py-16 space-y-4">
       <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-amber-500 border-t-transparent shadow-lg"></div>
-      <p class="text-slate-700 font-semibold text-base">กำลังคัดสรร 3 เมนูอาหารไทยยอดนิยมจากวัตถุดิบของคุณ...</p>
+      <p class="text-slate-700 font-semibold text-base">กำลังคัดสรรสูตรอาหารไทยรสเด็ดจากวัตถุดิบของคุณ...</p>
     </div>
 
-    <!-- Results Container (Show 3 Cards) -->
+    <!-- Results Container -->
     <div id="resultsContainer" class="hidden space-y-8 mb-16">
       
       <div class="flex items-center justify-between border-b border-amber-200 pb-3">
         <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
           <i data-lucide="chef-hat" class="w-6 h-6 text-amber-600"></i>
-          เมนูแนะนำสำหรับคุณ (3 เมนู)
+          เมนูแนะนำสำหรับคุณ
         </h3>
         <span id="keyNotice" class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-200 px-3 py-1 rounded-full">
-          ✅ อาหารไทยจริง รูปตรงปก
+          ✅ อาหารไทยมาตรฐาน รูปภาพตรงปก
         </span>
       </div>
 
-      <!-- 3 Recipe Cards List -->
+      <!-- Recipe Cards List -->
       <div id="recipeCardsList" class="space-y-8">
         <!-- Rendered dynamically -->
       </div>
@@ -165,12 +168,18 @@
   <div id="configModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-amber-100">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <h3 class="font-bold text-slate-900 text-base">⚙️ ตั้งค่า Gemini API Key</h3>
+        <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+          <i data-lucide="key" class="w-4 h-4 text-amber-500"></i>
+          ตั้งค่า Google Gemini API Key
+        </h3>
         <button onclick="toggleConfigModal()" class="text-slate-400 hover:text-slate-600">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
       <div class="space-y-3 text-xs">
+        <p class="text-slate-500 leading-relaxed">
+          นำ API Key จาก <strong>aistudio.google.com</strong> มาวางที่นี่เพื่อประมวลผลด้วย Gemini AI จริง
+        </p>
         <div>
           <label class="block font-semibold text-slate-700 mb-1">Google Gemini API Key:</label>
           <input type="password" id="geminiKey" placeholder="วางรหัส AIzaSy... ที่นี่" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3 font-mono focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
@@ -183,23 +192,62 @@
   </div>
 
   <script>
-    let ingredientList = ['กุ้ง', 'ไข่ไก่'];
+    let ingredientList = ['หมูกรอบ'];
     let currentRecipesList = [];
 
-    // คลังตรวจสอบวัตถุดิบรับประทานได้จริง
+    // คลังวัตถุดิบรับประทานได้จริง (Food Safety Guard)
     const validEdibleKeywords = [
       'หมู', 'เนื้อ', 'กุ้ง', 'ไก่', 'ปลา', 'ปลาหมึก', 'ไข่', 'ปลากระป๋อง', 'ผัก', 'คะน้า', 'กะเพรา',
       'ปู', 'หอย', 'เต้าหู้', 'เห็ด', 'มะเขือเทศ', 'หอมใหญ่', 'วัว', 'เป็ด', 'หมูกรอบ', 'แครอท', 'วุ้นเส้น', 'ข้าว'
     ];
 
-    // คลังเมนูอาหารไทยมาตรฐานแท้ๆ (มีเมนูรองรับหลากหลายสำหรับทุกวัตถุดิบ)
+    // คลังรูปภาพตรงปกตามประเภทวัตถุดิบหลัก (Exact Unsplash Food Match)
+    const imageDatabase = {
+      'หมูกรอบ': 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&auto=format&fit=crop&q=80',
+      'กุ้ง': 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&auto=format&fit=crop&q=80',
+      'เนื้อ': 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80',
+      'ปลาหมึก': 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&auto=format&fit=crop&q=80',
+      'ปลากระป๋อง': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80',
+      'ไข่': 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&auto=format&fit=crop&q=80',
+      ' default': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80'
+    };
+
+    // คลังเมนูอาหารไทยมาตรฐานแท้ๆ รูปตรงปก 100%
     const authenticMasterDatabase = [
+      {
+        keys: ['หมูกรอบ', 'หมู'],
+        title: "คะน้าหมูกรอบราดข้าว",
+        category: "ผัด / ทอด",
+        calories: "550 kcal",
+        image: imageDatabase['หมูกรอบ'],
+        ingredients: ["หมูกรอบหั่นชิ้น 150 กรัม", "ผักคะน้าหั่นท่อน 150 กรัม", "พริกขี้หนูทุบ 5 เม็ด", "กระเทียมสับ 1 ช้อนโต๊ะ", "ซอสหอยนางรม 1 ช้อนโต๊ะ"],
+        steps: [
+          "ใส่ผักคะน้า หมูกรอบ พริก กระเทียม เต้าเจี้ยว และซอสหอยนางรมเตรียมไว้ในจานเดียวกัน",
+          "ตั้งกระทะใส่น้ำมันให้ร้อนจัดจนควันขึ้นเบาๆ",
+          "เทส่วนผสมทั้งหมดลงไปผัดด้วยไฟแรงอย่างรวดเร็วประมาณ 1 นาที ปิดไฟพร้อมเสิร์ฟ"
+        ],
+        tip: "การเร่งไฟแรงและผัดอย่างรวดเร็ว จะทำให้ผักคะน้าเขียวกรอบและหมูกรอบยังคงความกรอบน่ากิน"
+      },
+      {
+        keys: ['หมูกรอบ', 'หมู'],
+        title: "หมูกรอบคั่วพริกเกลือ",
+        category: "ผัด / ทอด",
+        calories: "520 kcal",
+        image: imageDatabase['หมูกรอบ'],
+        ingredients: ["หมูกรอบหั่นชิ้น 200 กรัม", "กระเทียมสับ 2 ช้อนโต๊ะ", "พริกขี้หนูสับ 1 ช้อนโต๊ะ", "ต้นหอมซอย", "เกลือป่นและน้ำตาลทราย"],
+        steps: [
+          "นำหมูกรอบลงไปรวนในกระทะจนน้ำมันหมูออกและหนังเริ่มกรอบยิ่งขึ้น",
+          "ใส่กระเทียมและพริกสับลงไปผัดคั่วจนหอมกรอบ",
+          "ปรุงรสด้วยเกลือและน้ำตาลเล็กน้อย โรยต้นหอม คั่วให้เข้ากันตักใส่จาน"
+        ],
+        tip: "ใช้น้ำมันธรรมชาติจากหมูกรอบคั่วกระเทียม จะทำให้หอมยิ่งขึ้น"
+      },
       {
         keys: ['กุ้ง'],
         title: "ต้มยำกุ้งน้ำข้นโบราณ",
         category: "ต้ม / แกง / ยำ",
         calories: "320 kcal",
-        image: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&auto=format&fit=crop&q=80",
+        image: imageDatabase['กุ้ง'],
         ingredients: ["กุ้งสด 5 ตัว", "เห็ดฟาง 100 กรัม", "ข่า ตะไคร้ ใบมะกรูด", "น้ำพริกเผา 1 ช้อนโต๊ะ", "นมข้นจืด 3 ช้อนโต๊ะ", "มะนาว น้ำปลา พริกขี้หนู"],
         steps: [
           "ต้มน้ำซุปให้เดือด ใส่ข่า ตะไคร้ ใบมะกรูด และเห็ดฟางลงไปต้มจนหอม",
@@ -213,7 +261,7 @@
         title: "กุ้งคั่วพริกเกลือกระเทียมสด",
         category: "ผัด / ทอด",
         calories: "350 kcal",
-        image: "https://images.unsplash.com/photo-1559742811-822863c46f83?w=800&auto=format&fit=crop&q=80",
+        image: imageDatabase['กุ้ง'],
         ingredients: ["กุ้งสดแกะเปลือก 200 กรัม", "กระเทียมสับละเอียด 2 ช้อนโต๊ะ", "พริกจินดาสับ 1 ช้อนโต๊ะ", "ต้นหอมซอย", "เกลือป่น 1/2 ช้อนชา"],
         steps: [
           "นำกุ้งลงไปรวนในกระทะใส่น้ำมันเล็กน้อยพอสุก ตักขึ้นพักไว้",
@@ -223,53 +271,11 @@
         tip: "อย่าผัดกุ้งนานเกินไป เนื้อกุ้งจะแข็งกระด้างและเสียความหวาน"
       },
       {
-        keys: ['กุ้ง', 'ไข่'],
-        title: "กุ้งผัดผงกะหรี่นุ่มฟู",
-        category: "ผัด / ทอด",
-        calories: "410 kcal",
-        image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&auto=format&fit=crop&q=80",
-        ingredients: ["กุ้งสด 200 กรัม", "ไข่ไก่ 2 ฟอง", "ผงกะหรี่ 1 ช้อนโต๊ะ", "นมข้นจืด 4 ช้อนโต๊ะ", "หอมใหญ่ ขึ้นฉ่าย พริกชี้ฟ้า"],
-        steps: [
-          "ผสมไข่ไก่ ผงกะหรี่ นมข้นจืด และซอสหอยนางรม ตีให้เข้ากันเตรียมไว้",
-          "ผัดกระเทียมและหอมใหญ่จนหอม ใส่กุ้งลงไปผัดพอสุก",
-          "เทส่วนผสมไข่ลงไป เบาไฟ คลุกเคล้าเบาๆ ให้ไข่พอสุกนุ่ม โรยขึ้นฉ่ายตักใส่จาน"
-        ],
-        tip: "เบาไฟตอนใส่ไข่ จะทำให้เนื้อไข่นุ่มฟูฉ่ำซอส ไม่กระด้าง"
-      },
-      {
-        keys: ['หมูกรอบ', 'หมู'],
-        title: "คะน้าหมูกรอบราดข้าว",
-        category: "ผัด / ทอด",
-        calories: "550 kcal",
-        image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&auto=format&fit=crop&q=80",
-        ingredients: ["หมูกรอบหั่นชิ้น 150 กรัม", "ผักคะน้าหั่นท่อน 150 กรัม", "พริกขี้หนูทุบ 5 เม็ด", "กระเทียมสับ 1 ช้อนโต๊ะ", "ซอสหอยนางรม 1 ช้อนโต๊ะ"],
-        steps: [
-          "ใส่ผักคะน้า หมูกรอบ พริก กระเทียม เต้าเจี้ยว และซอสหอยนางรมเตรียมไว้ในจานเดียวกัน",
-          "ตั้งกระทะใส่น้ำมันให้ร้อนจัดจนควันขึ้นเบาๆ",
-          "เทส่วนผสมทั้งหมดลงไปผัดด้วยไฟแรงอย่างรวดเร็วประมาณ 1 นาที ปิดไฟพร้อมเสิร์ฟ"
-        ],
-        tip: "เร่งไฟแรงและผัดอย่างรวดเร็ว ผักคะน้าจะเขียวกรอบและหมูกรอบยังคงความกรอบ"
-      },
-      {
-        keys: ['หมูกรอบ', 'หมู'],
-        title: "หมูกรอบคั่วพริกเกลือ",
-        category: "ผัด / ทอด",
-        calories: "520 kcal",
-        image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
-        ingredients: ["หมูกรอบหั่นชิ้น 200 กรัม", "กระเทียมสับ 2 ช้อนโต๊ะ", "พริกขี้หนูสับ 1 ช้อนโต๊ะ", "ต้นหอมซอย", "เกลือป่นและน้ำตาลทราย"],
-        steps: [
-          "นำหมูกรอบลงไปรวนในกระทะจนน้ำมันหมูออกและหนังเริ่มกรอบยิ่งขึ้น",
-          "ใส่กระเทียมและพริกสับลงไปผัดคั่วจนหอมกรอบ",
-          "ปรุงรสด้วยเกลือและน้ำตาลเล็กน้อย โรยต้นหอม คั่วให้เข้ากันตักใส่จาน"
-        ],
-        tip: "ใช้น้ำมันธรรมชาติจากหมูกรอบคั่วกระเทียม จะทำให้หอมยิ่งขึ้น"
-      },
-      {
         keys: ['เนื้อ', 'เนื้อวัว'],
         title: "ผัดพริกหยวกเนื้อสด",
         category: "ผัด / ทอด",
         calories: "420 kcal",
-        image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
+        image: imageDatabase['เนื้อ'],
         ingredients: ["เนื้อวัวหั่นชิ้น 200 กรัม", "พริกหยวกหั่นเฉียง 2 เม็ด", "หอมใหญ่หั่นเสี้ยว 1/2 หัว", "กระเทียมสับ 1 ช้อนโต๊ะ", "ซอสหอยนางรม 1 ช้อนโต๊ะ"],
         steps: [
           "หมักเนื้อวัวด้วยซอสหอยนางรมเล็กน้อยประมาณ 10 นาทีให้นุ่ม",
@@ -283,7 +289,7 @@
         title: "ไข่เจียวหมูสับทรงเครื่อง",
         category: "ผัด / ทอด",
         calories: "380 kcal",
-        image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&auto=format&fit=crop&q=80",
+        image: imageDatabase['ไข่'],
         ingredients: ["ไข่ไก่ 2 ฟอง", "หมูสับ 50 กรัม", "ต้นหอมซอย 1 ต้น", "น้ำปลา 1 ช้อนชา", "ซอยหอยนางรม 1/2 ช้อนชา"],
         steps: [
           "ตอกไข่ใส่ชาม ใส่หมูสับ ต้นหอม ปรุงรสด้วยน้ำปลาและซอสหอยนางรม ตีให้เข้ากัน",
@@ -297,7 +303,7 @@
         title: "ยำปลากระป๋องสมุนไพรสด",
         category: "ต้ม / แกง / ยำ",
         calories: "250 kcal",
-        image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80",
+        image: imageDatabase['ปลากระป๋อง'],
         ingredients: ["ปลากระป๋อง 1 กระป๋อง", "หอมแดงซอย 3 หัว", "ตะไคร้ซอย 1 ต้น", "พริกขี้หนูสวนซอย 5 เม็ด", "น้ำมะนาว 1 ช้อนโต๊ะ", "น้ำปลา 1 ช้อนชา"],
         steps: [
           "เทปลากระป๋องใส่ชาม ค่อยๆ แยกเนื้อปลาให้อยู่ในขนาดพอดีคำ",
@@ -334,7 +340,7 @@
       if (!val) return;
 
       if (!isEdibleFood(val)) {
-        alert(`❌ "${val}" ไม่ใช่วัตถุดิบประกอบอาหารที่รับประทานได้!\n\nกรุณาระบุวัตถุดิบอาหาร เช่น กุ้ง, หมูกรอบ, เนื้อวัว, ไข่ไก่ เป็นต้น`);
+        alert(`❌ "${val}" ไม่ใช่วัตถุดิบประกอบอาหารที่รับประทานได้!\n\nกรุณาระบุวัตถุดิบอาหาร เช่น หมูกรอบ, กุ้ง, เนื้อวัว, ไข่ไก่ เป็นต้น`);
         input.value = '';
         return;
       }
@@ -374,6 +380,15 @@
       document.getElementById('geminiKey').value = gKey;
     }
 
+    function getMatchingImage(ingredientName) {
+      for (let key in imageDatabase) {
+        if (ingredientName.includes(key)) {
+          return imageDatabase[key];
+        }
+      }
+      return imageDatabase[' default'];
+    }
+
     async function processRecipe() {
       if (ingredientList.length === 0) {
         alert("กรุณาเพิ่มวัตถุดิบอย่างน้อย 1 รายการครับ");
@@ -387,7 +402,6 @@
         }
       }
 
-      const mealType = document.getElementById('mealType').value;
       const apiKey = localStorage.getItem('cfg_gemini');
 
       const submitBtn = document.getElementById('submitBtn');
@@ -399,21 +413,20 @@
       loadingState.classList.remove('hidden');
       resultsContainer.classList.add('hidden');
 
-      // AI Mode (Returns 3 Recipes Array)
+      // 1. Gemini AI Mode
       if (apiKey) {
         try {
-          const prompt = `คุณคือเชฟมืออาชีพ จงสร้างสูตรอาหารไทยมาตรฐานที่มีอยู่จริง 3 เมนูที่ไม่ซ้ำกัน โดยใช้วัตถุดิบหลักจาก: "${ingredientList.join(', ')}"
-ตอบกลับเป็น JSON Array ของ Object 3 เมนูเท่านั้น รูปแบบ:
+          const prompt = `คุณคือเชฟมืออาชีพ จงสร้างสูตรอาหารไทยมาตรฐานที่มีอยู่จริงโดยใช้วัตถุดิบหลักจาก: "${ingredientList.join(', ')}"
+ตอบกลับเป็น JSON Array ของ Object เมนูอาหารไทย (1-3 เมนู):
 [
   {
-    "title": "ชื่อเมนูไทยจริง 1",
-    "category": "หมวดหมู่อาหาร",
-    "calories": "380 kcal",
+    "title": "ชื่อเมนูไทยจริง",
+    "category": "ผัด / ทอด หรือ ต้ม / แกง",
+    "calories": "420 kcal",
     "ingredients": ["วัตถุดิบ 1", "วัตถุดิบ 2"],
     "steps": ["ขั้นตอนทำ 1", "ขั้นตอนทำ 2"],
-    "tip": "เคล็ดลับ"
-  },
-  ... อีก 2 เมนู ...
+    "tip": "เคล็ดลับความอร่อย"
+  }
 ]`;
 
           const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
@@ -427,43 +440,53 @@
           raw = raw.replace(/```json/g, '').replace(/```/g, '').trim();
           const parsedArray = JSON.parse(raw);
 
-          // Assign matching images
           parsedArray.forEach(item => {
-            item.image = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80";
+            item.image = getMatchingImage(ingredientList[0]);
           });
 
           renderMultipleResults(parsedArray, true);
           finishLoading();
           return;
         } catch (e) {
-          console.warn("Gemini Error / Authentic Multi-Recipe Fallback Activated", e);
+          console.warn("Gemini Error / Dynamic Authentic Fallback Activated", e);
         }
       }
 
-      // Authentic Fallback (Always returns at least 3 Authentic Recipes)
+      // 2. Authentic Fallback Database Mode (Always Return Exact Matching Dishes)
       setTimeout(() => {
         let matchedList = [];
 
-        // ค้นหาเมนูตรงตามแท็กวัตถุดิบ
+        // ค้นหาเมนูในคลังที่ตรงกับวัตถุดิบที่ผู้ใช้เลือก
         for (let tag of ingredientList) {
           for (let recipe of authenticMasterDatabase) {
             if (recipe.keys.some(k => tag.includes(k) || k.includes(tag))) {
               if (!matchedList.some(r => r.title === recipe.title)) {
+                recipe.image = getMatchingImage(tag); // Ensure Image Accuracy
                 matchedList.push(recipe);
               }
             }
           }
         }
 
-        // เติมเมนูมาตรฐานให้ครบอย่างน้อย 3 เมนูขึ้นไป
-        for (let recipe of authenticMasterDatabase) {
-          if (matchedList.length >= 3) break;
-          if (!matchedList.some(r => r.title === recipe.title)) {
-            matchedList.push(recipe);
-          }
+        // หากหาวัตถุดิบตรงในคลังไม่พบ ให้สร้างเมนูกะเพราสดรูปตรงปกขึ้นมา
+        if (matchedList.length === 0) {
+          const mainIng = ingredientList[0];
+          matchedList.push({
+            title: `ผัดกะเพรา${mainIng}สด`,
+            category: "ผัด / ทอด",
+            calories: "420 kcal",
+            image: getMatchingImage(mainIng),
+            ingredients: [`${mainIng} 150 กรัม`, "ใบกะเพรา 1 กำมือ", "พริกขี้หนูสดสับ 1 ช้อนโต๊ะ", "กระเทียมสับ 1 ช้อนโต๊ะ", "ซอสหอยนางรม 1 ช้อนโต๊ะ", "น้ำปลา 1 ช้อนชา"],
+            steps: [
+              "ตั้งกระทะใส่น้ำมันจนร้อน เจียวกระเทียมและพริกสับจนหอม",
+              `ใส่ ${mainIng} ลงไปผัดจนสุกนุ่มตามต้องการ`,
+              "ปรุงรสด้วยซอสหอยนางรมและน้ำปลา ใส่ใบกะเพราผัดด้วยไฟแรงอย่างรวดเร็ว ตักใส่จานพร้อมเสิร์ฟ"
+            ],
+            tip: "ใช้ไฟแรงและผัดอย่างรวดเร็ว จะช่วยให้ผัดกะเพราหอมกลิ่นกระทะและเนื้อไม่แข็งกระด้าง"
+          });
         }
 
-        renderMultipleResults(matchedList.slice(0, 3), false);
+        renderMultipleResults(matchedList, false);
         finishLoading();
       }, 700);
     }
@@ -472,19 +495,19 @@
       currentRecipesList = recipes;
       const listContainer = document.getElementById('recipeCardsList');
       
-      document.getElementById('keyNotice').innerText = isAI ? "✨ AI คำนวณ 3 เมนูตามวัตถุดิบจริง" : "✅ อาหารไทยจริง รูปตรงปก (3 เมนู)";
+      document.getElementById('keyNotice').innerText = isAI ? "✨ AI คำนวณเมนูตามวัตถุดิบจริง" : "✅ เมนูอาหารไทยมาตรฐาน รูปตรงปก";
 
       listContainer.innerHTML = recipes.map((data, index) => `
         <div class="glass-card recipe-card rounded-3xl overflow-hidden shadow-xl border border-amber-200 animate-fade-in" style="animation-delay: ${index * 0.15}s">
           
-          <div class="relative h-60 md:h-64 w-full bg-slate-200 overflow-hidden">
+          <div class="relative h-60 md:h-72 w-full bg-slate-200 overflow-hidden">
             <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/30 to-transparent"></div>
             
             <div class="absolute bottom-4 left-6 right-6 flex items-end justify-between">
               <div>
                 <span class="text-xs font-bold text-white bg-amber-500 px-3 py-1 rounded-full shadow">
-                  เมนูที่ ${index + 1}: ${data.category}
+                  ${data.category}
                 </span>
                 <h3 class="text-2xl md:text-3xl font-extrabold text-white mt-1.5 drop-shadow">
                   ${data.title}
@@ -506,7 +529,7 @@
                 </div>
                 <div>
                   <p class="text-[10px] uppercase tracking-wider font-bold text-amber-700">ประมาณการพลังงาน</p>
-                  <p class="text-xl font-black leading-none mt-0.5">${data.calories || "380 kcal"}</p>
+                  <p class="text-xl font-black leading-none mt-0.5">${data.calories || "400 kcal"}</p>
                 </div>
               </div>
             </div>
@@ -551,7 +574,7 @@
       const item = currentRecipesList[index];
       if (!item) return;
       window.speechSynthesis.cancel();
-      const textToSpeak = `เมนูแนะนำที่ ${index + 1} คือ ${item.title} วิธีทำคือ ${item.steps.join(' จากนั้น ')}`;
+      const textToSpeak = `เมนูแนะนำคือ ${item.title} วิธีทำคือ ${item.steps.join(' จากนั้น ')}`;
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.lang = 'th-TH';
       utterance.rate = 0.95;
